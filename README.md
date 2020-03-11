@@ -39,8 +39,8 @@ This package can perform its functions using the Android Debug Bridge (adb).
 - *WhatsApp Business (com.whatsapp.w4b)* **2.20.21**
 
 ###### The following Android versions are supported:
-- Android 5.1 (*API 22*) [**Emojis are not supported**]
-- Android 6.0 (*API 23*)
+- *Android 5.1 (API 22)* [**Emojis are not supported**]
+- *Android 6.0 (API 23)*
 
 
 #### Usage

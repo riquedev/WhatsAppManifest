@@ -124,6 +124,7 @@ I promise to improve the documentation in a few days, until then, I recommend us
 #### Disadvantages
 - Unfortunately it is not possible (or I still don't know how) to create trigger events, for example "when receiving a message activate a certain function".
 - For a good flow, we almost always need to close the application and then open it again on the screen we want.
+- It is necessary to use more computer resources than when using the browser, for example
 
 ------------
 

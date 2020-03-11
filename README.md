@@ -15,6 +15,16 @@ This package can perform its functions using the Android Debug Bridge (adb).
 - Clone the repository
 - Use `pip install -r requirements.txt` to install the required packages
 
+#### Details
+###### The following versions of WhatsApp are supported:
+- WhatsApp Business (com.whatsapp.w4b) 2.20.20
+- WhatsApp Business (com.whatsapp.w4b) 2.20.21
+
+###### The following Android versions are supported:
+- Android 5.1 (API 22)
+- Android 6.0 (API 23)
+
+
 #### Usage
 
 ##### 1. Import library

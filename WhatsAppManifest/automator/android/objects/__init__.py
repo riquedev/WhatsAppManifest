@@ -1,0 +1,1 @@
+from WhatsAppManifest.automator.android.objects.contact import AndroidContact

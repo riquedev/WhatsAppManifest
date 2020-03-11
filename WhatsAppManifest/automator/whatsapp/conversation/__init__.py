@@ -1,0 +1,1 @@
+from WhatsAppManifest.automator.whatsapp.conversation.conversation import Conversation

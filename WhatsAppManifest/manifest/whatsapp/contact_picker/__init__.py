@@ -1,0 +1,1 @@
+from WhatsAppManifest.manifest.whatsapp.contact_picker.contact_picker import ContactPicker

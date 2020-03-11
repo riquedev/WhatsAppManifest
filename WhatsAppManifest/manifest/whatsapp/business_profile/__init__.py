@@ -1,0 +1,1 @@
+from WhatsAppManifest.manifest.whatsapp.business_profile.profile import BusinessProfile

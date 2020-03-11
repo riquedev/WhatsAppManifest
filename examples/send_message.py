@@ -1,0 +1,19 @@
+from WhatsAppManifest import ADB, Automator
+from WhatsAppManifest.automator.whatsapp import Conversation
+
+# Note: We need the AdbServer class (even without using SSH) so that Automator can open the internal connection.
+with ADB(use_ssh=False) as AdbServer:
+    automator = Automator(adb_server=AdbServer, adb_host="127.0.0.1", adb_port=5037)
+
+    for device in automator.list_devices(state=None):
+
+        jid = "0011987654321@c.us"
+
+        conversation = Conversation(device=device)
+
+        conversation.send_message(
+            jid=jid,
+            message="Hello World!",
+            re_open=True,
+            wait_send_complete=True
+        )

@@ -1,0 +1,1 @@
+from WhatsAppManifest.manifest.whatsapp.path.path import Path

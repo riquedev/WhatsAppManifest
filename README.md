@@ -1,7 +1,8 @@
 # WhatsAppManifest
 
 ### What is it?
-This package is used to provide a python interface to interact with WhatsApp to send, receive messages, configure your profile, among other functions ...
+This package is used to provide a python interface to interact with WhatsApp to send, receive messages, configure your profile, among other functions...
+
 This package can perform its functions using the Android Debug Bridge (adb).
 
 ### Installation

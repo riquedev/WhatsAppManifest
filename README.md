@@ -1,4 +1,10 @@
 # WhatsAppManifest
+![GitHub issues](https://img.shields.io/github/issues-raw/riquedev/WhatsAppManifest)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/riquedev/WhatsAppManifest)
+![GitHub](https://img.shields.io/github/license/riquedev/WhatsAppManifest)
+![GitHub contributors](https://img.shields.io/github/contributors/riquedev/WhatsAppManifest)
+[![GitHub stars](https://img.shields.io/github/stars/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/network)
 
 ### What is it?
 This package is used to provide a python interface to interact with WhatsApp to send, receive messages, configure your profile, among other functions...

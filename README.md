@@ -3,6 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bdbbf2c662324a28851447c62c45825a)](https://www.codacy.com/manual/rique_dev/WhatsAppManifest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=riquedev/WhatsAppManifest&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/riquedev/WhatsAppManifest?branch=master)](https://bettercodehub.com/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/47c3fcdd9719bd907507/maintainability)](https://codeclimate.com/repos/5e6844e143cc9c00b0000881/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/riquedev/WhatsAppManifest/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/riquedev/WhatsAppManifest?targetFile=requirements.txt)
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/riquedev/WhatsAppManifest)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/riquedev/WhatsAppManifest)
@@ -10,6 +11,9 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/riquedev/WhatsAppManifest)
 [![GitHub stars](https://img.shields.io/github/stars/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/network)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![HitCount](http://hits.dwyl.com/riquedev/WhatsAppManifest.svg)](http://hits.dwyl.com/riquedev/WhatsAppManifest)
+
 
 ### What is it?
 This package is used to provide a python interface to interact with WhatsApp to send, receive messages, configure your profile, among other functions...

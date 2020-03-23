@@ -1,5 +1,9 @@
 from collections import namedtuple
 
+"""
+Phone Keyevents
+"""
+
 KeyEventsTuple = namedtuple("KeyEvents", [
     "UNKNOWN",
     "MENU",

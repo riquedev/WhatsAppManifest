@@ -1,4 +1,9 @@
 from collections import namedtuple
+
+"""
+Phone Activities
+"""
+
 ActivitiesTuple = namedtuple("Activities", [
     "WhatsAppConversation",
     "WhatsAppGalleryPickerMediaPreview",

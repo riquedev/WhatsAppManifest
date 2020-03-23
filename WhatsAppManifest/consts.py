@@ -3,7 +3,8 @@ _PACKAGE_NAME_ = "com.whatsapp.w4b"
 
 # Supported versions of the application
 _PACKAGE_VERSION_SUPPORT_ = [
-    "2.20.20","2.20.21"
+    "2.20.20","2.20.21","2.20.22",
+    "2.20.23","2.20.24"
 ]
 
 # The package supports these versions of the android device

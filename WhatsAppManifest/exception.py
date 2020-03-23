@@ -12,3 +12,6 @@ class UnsupportedAndroidVersion(Exception):
 
 class UnsupportedSDKLevel(Exception):
     pass
+
+class NeverStartedActivity(Exception):
+    pass

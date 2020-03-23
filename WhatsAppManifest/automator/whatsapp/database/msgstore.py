@@ -106,8 +106,19 @@ class WhatsAppDatabaseMSGStore(WhatsAppDatabase):
         :return: Message
         :rtype: Message
         """
-        jid_id = jid
+        for row in self.query(
+                f"select * from messages where _id in (SELECT last_message_row_id FROM chat where jid_row_id in (SELECT _id from jid where raw_string = '{jid}'))"):
+            return Message(row)
+
+    def chat_last_message_has_sent(self, jid: str) -> bool:
+        has_sent = False
 
         for row in self.query(
-                f"select * from messages where _id in (SELECT last_message_row_id FROM chat where jid_row_id = '{jid_id}')"):
-            return Message(row)
+                f"select * from messages where _id in (SELECT last_message_row_id FROM chat where jid_row_id in (SELECT _id from jid where raw_string = '{jid}'))"):
+            message = Message(row)
+
+            if message is not None:
+                has_sent = message.status in ["seen", "received", "waiting_in_server"]
+            break
+
+        return has_sent

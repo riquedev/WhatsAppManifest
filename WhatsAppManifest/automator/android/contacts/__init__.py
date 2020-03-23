@@ -82,7 +82,7 @@ class AndroidContacts(WhatsAppManifest):
                 IntentFlags.EXTRA_STRING_VALUE: [
                     {
                         "value": "name",
-                        "extra": f"{name}"
+                        "extra": f"\"{name}\""
                     },
                     {
                         "value": "phone",

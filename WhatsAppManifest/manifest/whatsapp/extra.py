@@ -30,3 +30,8 @@ class Jid:
 class AndroidExtraStream:
     def __str__(self):
         return "android.intent.extra.STREAM"
+
+class AndroidExtraStream:
+    def __str__(self):
+        return "android.intent.extra.STREAM"
+

@@ -1,0 +1,1 @@
+from WhatsAppManifest.automator.whatsapp.utils.re_open import re_open_package

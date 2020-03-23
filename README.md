@@ -37,10 +37,15 @@ This package can perform its functions using the Android Debug Bridge (adb).
 ###### The following versions of WhatsApp are supported:
 - *WhatsApp Business (com.whatsapp.w4b)* **2.20.20**
 - *WhatsApp Business (com.whatsapp.w4b)* **2.20.21**
+- *WhatsApp Business (com.whatsapp.w4b)* **2.20.22**
+- *WhatsApp Business (com.whatsapp.w4b)* **2.20.23**
+- *WhatsApp Business (com.whatsapp.w4b)* **2.20.24**
 
 ###### The following Android versions are supported:
 - *Android 5.1 (API 22)* [**Emojis are not supported**]
 - *Android 6.0 (API 23)*
+- *Android 7.0 (API 24)*
+- *Android 8.0 (API 26)* [**Some files cannot be shared on WhatsApp**]
 
 
 #### Usage
@@ -91,7 +96,21 @@ conversation.send_message(
 			)
 ```
 
-##### 5. Tools
+##### 5. Send media
+```python
+from WhatsAppManifest.automator.whatsapp import Conversation
+conversation = Conversation(device=device)
+jid = "0011987654321@c.us"
+
+conversation.send_media(
+            jid=jid,
+            file_path=r"/to/folder/file",
+            re_open=True, # This causes WhatsApp to close and then open again, to avoid bugs.
+            wait_send_complete=True # This makes the Script only continue after the last message sent to the contact has arrived at the server or the contact.
+			)
+```
+
+##### 6. Tools
 ```python
 help(device.ui_automator)
 help(device.adb_device)

@@ -5,7 +5,6 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/riquedev/WhatsAppManifest?branch=master)](https://bettercodehub.com/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/47c3fcdd9719bd907507/maintainability)](https://codeclimate.com/repos/5e6844e143cc9c00b0000881/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/riquedev/WhatsAppManifest/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/riquedev/WhatsAppManifest?targetFile=requirements.txt)
-
 ![GitHub contributors](https://img.shields.io/github/contributors/riquedev/WhatsAppManifest)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 ![GitHub issues](https://img.shields.io/github/issues-raw/riquedev/WhatsAppManifest)

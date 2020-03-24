@@ -1,4 +1,5 @@
 from time import sleep
+from typing import Iterator
 
 import adbutils
 from ppadb.device import Device as AdbDevice
@@ -8,7 +9,7 @@ from WhatsAppManifest.exception import UnsupportedPackageVersion, PackageNotInst
 from WhatsAppManifest.adb.base import WhatsAppManifest
 from WhatsAppManifest.adb.ui_automator_remote import UIAutomatorRemote
 from WhatsAppManifest.exception import NeverStartedActivity
-
+from WhatsAppManifest.adb.types import Log
 
 class Device(WhatsAppManifest):
     """
@@ -27,6 +28,21 @@ class Device(WhatsAppManifest):
         :rtype: AdbDevice
         """
         return self._adb_device
+
+    @property
+    def logcat(self) -> Iterator[Log]:
+        for line in str(self.adb_device.shell("logcat -d")).splitlines():
+
+            if "----" in line[:5]:
+                continue
+
+            yield Log(line)
+
+    @property
+    def whatsapp_logcat(self) -> Iterator[Log]:
+        for line in self.logcat:
+            if "com.whats" in line or "whatsapp" in line:
+                yield line
 
     @property
     def ui_automator(self) -> UIAutomatorRemote:
@@ -174,22 +190,26 @@ class Device(WhatsAppManifest):
     def current_app(self) -> dict:
         return self.adb_utils.current_app()
 
-    def is_current_activity(self,activity):
+    def is_current_activity(self, activity):
         return self.current_app.get("activity") == activity
 
-    def wait_activity(self, activity: list, interval: float = 1.5, retries: int = 3):
+    def wait_activity(self, activity: list, interval: float = 1.5, retries: int = 3,
+                      throw_exception: bool = True) -> bool:
         self.logger.debug(f"Waiting for activity {activity}")
         retry = 0
 
-        if isinstance(activity,str):
+        if isinstance(activity, str):
             activity = [activity]
 
         while not self.current_app.get("activity") in activity:
             retry += 1
 
             if retry >= retries:
-                raise NeverStartedActivity(f"Couldn't start activity {activity}."
-                                           f"Current activity is: {self.current_app}")
+                if throw_exception:
+                    raise NeverStartedActivity(f"Couldn't start activity {activity}."
+                                               f"Current activity is: {self.current_app}")
+                else:
+                    return False
 
             sleep(interval)
 

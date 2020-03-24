@@ -1,5 +1,5 @@
 import logging, os, sys
-from WhatsAppManifest.consts import _PACKAGE_NAME_
+from WhatsAppManifest.consts import _PACKAGE_NAME_, _LOGGER_LEVEL_
 
 
 class WhatsAppManifest(object):
@@ -26,7 +26,7 @@ class WhatsAppManifest(object):
         if self.logger.handlers:
             self.logger.handlers = []
 
-        self.logger.setLevel(logging.DEBUG)
+        self.logger.setLevel(_LOGGER_LEVEL_)
 
         if not os.path.exists("logs"):
             os.makedirs("logs", exist_ok=True)

@@ -1,3 +1,5 @@
+import logging
+
 # This Python package supports this android application
 _PACKAGE_NAME_ = "com.whatsapp.w4b"
 
@@ -27,3 +29,6 @@ _PACKAGE_VERSION_ = lambda vers: str(vers) in _PACKAGE_VERSION_SUPPORT_
 _ADB_VERSION_ = lambda vers: str(vers) in _ADB_VERSIONS_SUPPORTED_
 _ANDROID_VERSION_ = lambda vers: str(vers) in _ANDROID_VERSION_SUPPORT_
 _SDK_LEVEL_ = lambda level: str(level) in _SDK_LEVEL_SUPPORT_
+_MESSAGE_SENT_STATUS_ = ["seen","received","waiting_in_server"]
+_MESSAGE_IS_SENT_ = lambda status: status is not None and status in _MESSAGE_SENT_STATUS_
+_LOGGER_LEVEL_ = logging.DEBUG

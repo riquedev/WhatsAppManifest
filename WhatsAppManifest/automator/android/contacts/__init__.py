@@ -20,6 +20,9 @@ class AndroidContacts(WhatsAppManifest):
         self._device = device
         self.build_logger(type(self).__name__)
 
+    def __enter__(self):
+        return self.contacts
+
     @property
     def device(self) -> Device:
         return self._device
@@ -36,8 +39,7 @@ class AndroidContacts(WhatsAppManifest):
         for line in str(shell_content).splitlines():
 
             contact = AndroidContact()
-
-            for key, value, value2 in re.findall(r'([^\s|=]+)=(\s*([a-zA-Z^\s\d|]+)|)', line):
+            for key, value, value2 in re.findall(r'([^\s|=]+)=(\s*(.[a-zA-Z^\s\d|]+)|.)', line):
                 contact[key] = value
 
             yield contact
@@ -60,7 +62,6 @@ class AndroidContacts(WhatsAppManifest):
         :return: Contact exists
         :rtype: bool
         """
-        phone = ''.join(filter(str.isdigit, phone))
         return len(list(self.get_contact(phone))) > 0
 
     def save_contact(self, name, phone) -> bool:

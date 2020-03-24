@@ -8,6 +8,7 @@ from WhatsAppManifest.automator.whatsapp.database import WhatsAppDatabaseMSGStor
 from WhatsAppManifest.automator.whatsapp.utils import re_open_package
 from WhatsAppManifest.manifest.android.activity import Activities
 from WhatsAppManifest.manifest.whatsapp.contact_picker import ContactPicker
+from WhatsAppManifest.manifest.whatsapp.api_send import APISend
 
 
 class Conversation(WhatsAppManifest):
@@ -20,9 +21,21 @@ class Conversation(WhatsAppManifest):
         self._msgstore = WhatsAppDatabaseMSGStore(device=device)
 
     def send_message(self, jid: str, message: str, re_open: bool = True, wait_send_complete: bool = False):
-
+        """
+        Responsible method for sending text
+        :param jid:
+        :type jid:
+        :param message:
+        :type message:
+        :param re_open:
+        :type re_open:
+        :param wait_send_complete:
+        :type wait_send_complete:
+        :return:
+        :rtype:
+        """
         if re_open:
-            re_open_package(device=self._device,package=_PACKAGE_NAME_)
+            re_open_package(device=self._device, package=_PACKAGE_NAME_)
 
         picker = ContactPicker()
 
@@ -55,15 +68,32 @@ class Conversation(WhatsAppManifest):
         :rtype: bool
         """
 
-        from WhatsAppManifest.manifest.whatsapp.api_send import APISend
+        """
+            Create chat via api command constructor
+        """
 
         api_send = APISend()
         command = api_send.build_apo_send(phone_number)
 
         self._device.adb_device.shell(command)
-        return self._device.wait_activity(activity=Activities.WhatsAppConversation)
+
+        # Wait activity open
+        return self._device.wait_activity(activity=Activities.WhatsAppConversation, throw_exception=False)
 
     def send_media(self, jid: str, file_path: str, re_open: bool = True, wait_send_complete: bool = False):
+        """
+        Responsible method for sending media
+        :param jid:
+        :type jid:
+        :param file_path:
+        :type file_path:
+        :param re_open:
+        :type re_open:
+        :param wait_send_complete:
+        :type wait_send_complete:
+        :return:
+        :rtype:
+        """
         success = False
         file_name = os.path.basename(file_path)
 
@@ -72,6 +102,7 @@ class Conversation(WhatsAppManifest):
 
         self._device.adb_device.push(file_path, f"/data/local/{file_name}")
 
+        # Send media command build
         picker = ContactPicker()
         command = picker.build_send_media(jid, file_name)
         self.logger.info(f"Sending media to contact {jid}")
@@ -79,30 +110,28 @@ class Conversation(WhatsAppManifest):
         command_output = self._device.adb_device.shell(command)
         self.logger.debug(f"{command_output}")
 
+        # We can get the activity for selecting the contact or viewing the media
         self._device.wait_activity(activity=[
             Activities.WhatsAppContactPicker,
             Activities.WhatsAppGalleryPickerMediaPreview
         ])
 
         if self._device.is_current_activity(Activities.WhatsAppContactPicker):
-            self._device.adb_device.shell("sleep 3")
-            self._device.adb_device.input_keyevent(AndroidKeyEvents.TAB)
-            self._device.adb_device.input_keyevent(AndroidKeyEvents.TAB)
-            self._device.adb_device.input_keyevent(AndroidKeyEvents.TAB)
-            self._device.adb_device.input_keyevent(AndroidKeyEvents.ENTER)
 
-            if self._device.adb_utils.current_app().get("activity") == "com.whatsapp.Conversation":
+            self._device.send_keyevent(AndroidKeyEvents.TAB, repeats=3)
+            self._device.send_keyevent(AndroidKeyEvents.ENTER, repeats=1)
+            if self._device.is_current_activity(Activities.WhatsAppConversation):
+
                 if wait_send_complete:
-                    while True:
-                        sleep(2)
-                        message = self._msgstore.last_contact_message(jid)
-                        if message is not None and message.status in ["seen", "received", "waiting_in_server"]:
-                            break
+                    self.logger.info(f"Waiting confirmation")
 
-                return True
+                    while not self._msgstore.chat_last_message_has_sent(jid):
+                        sleep(0.2)
+                        self.logger.info(f"The message has not yet been sent")
 
+                success = True
             else:
-                return False
+                success = False
 
         elif self._device.is_current_activity(Activities.WhatsAppGalleryPickerMediaPreview):
             self._device.send_keyevent(AndroidKeyEvents.TAB, repeats=6)

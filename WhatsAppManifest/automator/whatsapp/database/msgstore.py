@@ -1,4 +1,5 @@
 from typing import Iterator
+from WhatsAppManifest.consts import _MESSAGE_IS_SENT_
 from WhatsAppManifest.automator.whatsapp.database.objects import Jid, Chat, Message
 from WhatsAppManifest.manifest.whatsapp.path import Path
 from WhatsAppManifest.automator.whatsapp.database.base import WhatsAppDatabase
@@ -118,7 +119,7 @@ class WhatsAppDatabaseMSGStore(WhatsAppDatabase):
             message = Message(row)
 
             if message is not None:
-                has_sent = message.status in ["seen", "received", "waiting_in_server"]
+                has_sent = _MESSAGE_IS_SENT_(message.status)
             break
 
         return has_sent

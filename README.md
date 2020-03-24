@@ -86,9 +86,15 @@ device = automator.get_device(serial="XXXXXXX")
 ```python
 from WhatsAppManifest.automator.whatsapp import Conversation
 conversation = Conversation(device=device)
-jid = "0011987654321@c.us"
+phone = "+0011987654321"
+jid = conversation.phone_str_to_jid(phone=phone)
+created = conversation.chat_exists(jid=jid)
+        
+if not created:
+    created = conversation.create_chat(phone_number=phone)
 
-conversation.send_message(
+if created:
+    conversation.send_message(
             jid=jid,
             message="Hello World!",
             re_open=True, # This causes WhatsApp to close and then open again, to avoid bugs.
@@ -100,9 +106,15 @@ conversation.send_message(
 ```python
 from WhatsAppManifest.automator.whatsapp import Conversation
 conversation = Conversation(device=device)
-jid = "0011987654321@c.us"
+phone = "+0011987654321"
+jid = conversation.phone_str_to_jid(phone=phone)
+created = conversation.chat_exists(jid=jid)
+        
+if not created:
+    created = conversation.create_chat(phone_number=phone)
 
-conversation.send_media(
+if created:
+    conversation.send_media(
             jid=jid,
             file_path=r"/to/folder/file",
             re_open=True, # This causes WhatsApp to close and then open again, to avoid bugs.

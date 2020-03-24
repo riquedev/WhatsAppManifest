@@ -1,4 +1,4 @@
-import os
+import os, re
 from time import sleep
 from WhatsAppManifest.adb.base import WhatsAppManifest
 from WhatsAppManifest.consts import _PACKAGE_NAME_
@@ -78,7 +78,8 @@ class Conversation(WhatsAppManifest):
         self._device.adb_device.shell(command)
 
         # Wait activity open
-        return self._device.wait_activity(activity=Activities.WhatsAppConversation, throw_exception=False)
+        self._device.wait_activity(activity=Activities.WhatsAppConversation)
+        return self.chat_exists(self.phone_str_to_jid(phone_number))
 
     def send_media(self, jid: str, file_path: str, re_open: bool = True, wait_send_complete: bool = False):
         """
@@ -152,6 +153,10 @@ class Conversation(WhatsAppManifest):
 
     def chat_exists(self, jid: str) -> bool:
         return self._msgstore.chat_exists(jid)
+
+    def phone_str_to_jid(self, phone: str) -> str:
+        phone = re.sub("[^0-9]", "", phone)
+        return f"{phone}@s.whatsapp.net"
 
     def get_jid_from_phone_number(self, phone: str) -> str:
         return self._msgstore.get_jid_from_number(phone).raw_string

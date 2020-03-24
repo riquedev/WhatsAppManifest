@@ -7,13 +7,19 @@ with ADB(use_ssh=False) as AdbServer:
 
     for device in automator.list_devices(state=None):
 
-        jid = "0011987654321@c.us"
-
         conversation = Conversation(device=device)
 
-        conversation.send_message(
-            jid=jid,
-            message="Hello World!",
-            re_open=True,
-            wait_send_complete=True
-        )
+        phone = "+0011987654321"
+        jid = conversation.phone_str_to_jid(phone=phone)
+        created = conversation.chat_exists(jid=jid)
+
+        if created:
+            created = conversation.create_chat(phone_number=phone)
+
+        if created:
+            conversation.send_message(
+                jid=jid,
+                message="Hello World!",
+                re_open=True,
+                wait_send_complete=True
+            )

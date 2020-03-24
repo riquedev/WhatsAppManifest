@@ -1,3 +1,4 @@
+import re
 from typing import Iterator
 from WhatsAppManifest.consts import _MESSAGE_IS_SENT_
 from WhatsAppManifest.automator.whatsapp.database.objects import Jid, Chat, Message
@@ -56,6 +57,7 @@ class WhatsAppDatabaseMSGStore(WhatsAppDatabase):
         :return: Jid object
         :rtype: Jid
         """
+        phone = re.sub("[^0-9]", "", phone)
         for jid in map(lambda row: Jid(row), self.query(f"SELECT * FROM jid where user = '{phone}'")):
             return jid
 
@@ -123,3 +125,10 @@ class WhatsAppDatabaseMSGStore(WhatsAppDatabase):
             break
 
         return has_sent
+
+    def chat_exists(self, jid) -> bool:
+        for row in self.query(
+                f"""SELECT _id from chat where jid_row_id in (SELECT _id from jid where raw_string = '{jid}')"""
+        ):
+            return row is not None
+        return False

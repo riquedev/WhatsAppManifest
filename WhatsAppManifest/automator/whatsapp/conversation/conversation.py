@@ -149,3 +149,9 @@ class Conversation(WhatsAppManifest):
                 success = True
 
         return success
+
+    def chat_exists(self, jid: str) -> bool:
+        return self._msgstore.chat_exists(jid)
+
+    def get_jid_from_phone_number(self, phone: str) -> str:
+        return self._msgstore.get_jid_from_number(phone).raw_string

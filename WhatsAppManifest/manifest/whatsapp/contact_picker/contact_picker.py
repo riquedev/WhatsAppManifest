@@ -41,7 +41,7 @@ class ContactPicker(WhatsAppManifest):
                 }
             ]
 
-        })
+        }, app_distinct=True)
 
     def build_send_media(self,jid: str, file_name: str) -> str:
         self.logger.debug("Building command for send media")

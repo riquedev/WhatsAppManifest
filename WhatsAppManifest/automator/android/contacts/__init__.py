@@ -91,7 +91,8 @@ class AndroidContacts(WhatsAppManifest):
                     }
                 ]
             },
-            app_distinct=False
+            app_distinct=True,
+            app_name="com.android.contacts"
         )
 
         self.device.adb_utils.shell(command)

@@ -41,7 +41,7 @@ class WhatsAppManifest(object):
         fileHandler.setFormatter(formatter)
         self.logger.addHandler(fileHandler)
 
-    def _build_am_start(self, data: dict, app_distinct: bool = True) -> str:
+    def _build_am_start(self, data: dict, app_distinct: bool = True, app_name: str = None) -> str:
         """
         "adb am start" command builder
         :param data: Command dict
@@ -78,4 +78,4 @@ class WhatsAppManifest(object):
 
                 commands.append(f"-{key} {value}")
 
-        return f"am start {' '.join(commands)} {'-p '+_PACKAGE_NAME_ if app_distinct else ''}"
+        return f"am start {' '.join(commands)} {'-p '+_PACKAGE_NAME_ if not app_name else '-p '+app_name if app_distinct else ''}"

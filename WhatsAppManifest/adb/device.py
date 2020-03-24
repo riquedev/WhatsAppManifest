@@ -207,7 +207,8 @@ class Device(WhatsAppManifest):
             if retry >= retries:
                 if throw_exception:
                     raise NeverStartedActivity(f"Couldn't start activity {activity}."
-                                               f"Current activity is: {self.current_app}")
+                                               f"Current activity is: {self.current_app}\n"
+                                               f"Last logs: {list(self.whatsapp_logcat)}")
                 else:
                     return False
 

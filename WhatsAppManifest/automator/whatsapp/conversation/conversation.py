@@ -9,6 +9,7 @@ from WhatsAppManifest.automator.whatsapp.utils import re_open_package
 from WhatsAppManifest.manifest.android.activity import Activities
 from WhatsAppManifest.manifest.whatsapp.contact_picker import ContactPicker
 from WhatsAppManifest.manifest.whatsapp.api_send import APISend
+from WhatsAppManifest.automator.whatsapp.database.objects import Message
 
 
 class Conversation(WhatsAppManifest):
@@ -20,7 +21,8 @@ class Conversation(WhatsAppManifest):
         self._device = device
         self._msgstore = WhatsAppDatabaseMSGStore(device=device)
 
-    def send_message(self, jid: str, message: str, re_open: bool = True, wait_send_complete: bool = False):
+    def send_message(self, jid: str, message: str, re_open: bool = True, wait_send_complete: bool = False,
+                     interval: float = 1.5, retries: int = 3) -> Message:
         """
         Responsible method for sending text
         :param jid:
@@ -47,7 +49,7 @@ class Conversation(WhatsAppManifest):
         self.logger.debug(f"{command_output}")
 
         # We need to wait for the conversation to enter
-        self._device.wait_activity(activity=Activities.WhatsAppConversation)
+        self._device.wait_activity(activity=Activities.WhatsAppConversation, interval=interval, retries=retries)
 
         self.logger.info(f"Pressing the \"ENTER\" key")
         self._device.send_keyevent(AndroidKeyEvents.ENTER)
@@ -58,6 +60,8 @@ class Conversation(WhatsAppManifest):
             while not self._msgstore.chat_last_message_has_sent(jid):
                 sleep(0.2)
                 self.logger.info(f"The message has not yet been sent")
+
+        return self._msgstore.last_contact_message(jid)
 
     def create_chat(self, phone_number) -> bool:
         """
@@ -81,7 +85,7 @@ class Conversation(WhatsAppManifest):
         self._device.wait_activity(activity=Activities.WhatsAppConversation)
         return self.chat_exists(self.phone_str_to_jid(phone_number))
 
-    def send_media(self, jid: str, file_path: str, re_open: bool = True, wait_send_complete: bool = False):
+    def send_media(self, jid: str, file_path: str, re_open: bool = True, wait_send_complete: bool = False) -> Message:
         """
         Responsible method for sending media
         :param jid:
@@ -95,7 +99,6 @@ class Conversation(WhatsAppManifest):
         :return:
         :rtype:
         """
-        success = False
         file_name = os.path.basename(file_path)
 
         if re_open:
@@ -130,9 +133,7 @@ class Conversation(WhatsAppManifest):
                         sleep(0.2)
                         self.logger.info(f"The message has not yet been sent")
 
-                success = True
-            else:
-                success = False
+                return self._msgstore.last_contact_message(jid)
 
         elif self._device.is_current_activity(Activities.WhatsAppGalleryPickerMediaPreview):
             self._device.send_keyevent(AndroidKeyEvents.TAB, repeats=6)
@@ -147,9 +148,7 @@ class Conversation(WhatsAppManifest):
                         sleep(0.2)
                         self.logger.info(f"The message has not yet been sent")
 
-                success = True
-
-        return success
+                return self._msgstore.last_contact_message(jid)
 
     def chat_exists(self, jid: str) -> bool:
         return self._msgstore.chat_exists(jid)

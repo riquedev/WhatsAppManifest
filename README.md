@@ -1,6 +1,5 @@
 # WhatsAppManifest
 ![GitHub](https://img.shields.io/github/license/riquedev/WhatsAppManifest)
-
 [![codebeat badge](https://codebeat.co/badges/fa8899ba-f894-4d67-9752-f35b94778c2a)](https://codebeat.co/projects/github-com-riquedev-whatsappmanifest-master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bdbbf2c662324a28851447c62c45825a)](https://www.codacy.com/manual/rique_dev/WhatsAppManifest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=riquedev/WhatsAppManifest&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/riquedev/WhatsAppManifest?branch=master)](https://bettercodehub.com/)
@@ -9,10 +8,8 @@
 
 ![GitHub contributors](https://img.shields.io/github/contributors/riquedev/WhatsAppManifest)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
-
 ![GitHub issues](https://img.shields.io/github/issues-raw/riquedev/WhatsAppManifest)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/riquedev/WhatsAppManifest)
-
 [![GitHub stars](https://img.shields.io/github/stars/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/riquedev/WhatsAppManifest)](https://github.com/riquedev/WhatsAppManifest/network)
 [![HitCount](http://hits.dwyl.com/riquedev/WhatsAppManifest.svg)](http://hits.dwyl.com/riquedev/WhatsAppManifest)

@@ -14,7 +14,7 @@ cryptography==2.8
 decorator==4.4.1
 deprecation==2.0.7
 idna==2.9
-lxml==4.5.0
+lxml==4.6.3
 packaging==20.1
 paramiko==2.7.1
 Pillow==7.0.0

@@ -21,7 +21,7 @@ Pillow==7.0.0
 protobuf==3.18.3
 psutil==5.7.0
 pure-python-adb==0.2.3.dev0
-py==1.8.1
+py==1.10.0
 pyasn1==0.4.8
 pycparser==2.19
 pycryptodome==3.9.7

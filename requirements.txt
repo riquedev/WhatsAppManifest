@@ -41,7 +41,7 @@ soupsieve==2.0
 sshtunnel==0.1.5
 tabulate==0.8.6
 uiautomator==0.3.6
-urllib3==1.25.8
+urllib3==1.26.5
 Wand==0.5.9
 websocket-client==0.57.0
 whichcraft==0.6.1

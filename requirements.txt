@@ -17,7 +17,7 @@ idna==2.9
 lxml==4.9.1
 packaging==20.1
 paramiko==2.10.1
-Pillow==7.0.0
+Pillow==9.0.1
 protobuf==3.18.3
 psutil==5.7.0
 pure-python-adb==0.2.3.dev0

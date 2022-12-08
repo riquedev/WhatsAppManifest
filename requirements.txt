@@ -5,7 +5,7 @@ apkutils2==1.0.0
 bcrypt==3.1.7
 beautifulsoup4==4.8.2
 bs4==0.0.1
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.14.0
 chardet==3.0.4
 cigam==0.0.3

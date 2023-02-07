@@ -10,7 +10,7 @@ cffi==1.14.0
 chardet==3.0.4
 cigam==0.0.3
 Click==7.0
-cryptography==2.8
+cryptography==39.0.1
 decorator==4.4.1
 deprecation==2.0.7
 idna==2.9
